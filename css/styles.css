@@ -1,15 +1,39 @@
-*{
+* {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-body{
+body {
     background-color: tomato;
 }
 
-footer{
+footer {
     background-color: aquamarine;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
+}
+
+.btn {
+    width: 7rem;
+}
+
+.contenedor-principal {
+    display: flex;
+}
+
+.filtros {
+    width: 13vw;
+    margin: 0 5px 0 0;
+    padding: 1rem 0 0 0;
+    background-color: rgb(197, 154, 236);
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    align-items: center;
+}
+
+.productos {
+    width: 85vw;
+    background-color: blue;
 }
