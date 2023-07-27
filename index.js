@@ -1,3 +1,4 @@
+/*
 //DIBUJO DE CABALLO EN ASCII ART
 const asciiArt =
     ".,\n" +
@@ -67,8 +68,9 @@ for (i = 0; i <= rondas; i++) {
     }
 }
 alert(`Los tres mejores son: \n posicion 1: ${participantes[0]} \n posicion 2:${participantes[1]} \n posicion 3: ${participantes[2]}`)
+*/
 
-/*
+// Array con todos los producos
 const productos = [
     //ZAPATOS
     {
@@ -374,11 +376,40 @@ const productos = [
         precio: 180000
     }
 ]
+// Array con todos los links de los img utilizados en los filtros
+const imgFiltros = [
+    {
+        nombre: "menor",
+        link: "https://img.shields.io/badge/X  Precio%20%E2%86%91-%23686E73.svg?style=for-the-badge&amp;logoColor=white"
+    },
+    {
+        nombre: "mayor",
+        link: "https://img.shields.io/badge/X  Precio%20%E2%86%93-%23686E73.svg?style=for-the-badge&amp;logoColor=white"
+    },
+    {
+        nombre: "zapato",
+        link: "https://img.shields.io/badge/X%20%20Zapatos-%23686E73.svg?style=for-the-badge&amp;logoColor=white"
+    },
+    {
+        nombre: "zapatilla",
+        link: "https://img.shields.io/badge/X%20%20Zapatillas-%23686E73.svg?style=for-the-badge&amp;logoColor=white"
+    },
+    {
+        nombre: "bota",
+        link: "https://img.shields.io/badge/X%20%20Botas-%23686E73.svg?style=for-the-badge&amp;logoColor=white"
+    }]
+// Array vacio para poder cargar los filtros que luego se convierten en img`s
+const arrayDeFiltros = []
 
+// Llamado al dom necesario
 const contenedorProductos = document.querySelector("#contenedor-productos")
+const contenedorFiltrosAplicados = document.querySelector(".filtros-aplicados")
+const filtroAplicado = document.querySelector(".filtro-aplicado")
 const botonesFiltros = document.querySelectorAll(".boton-filtro")
+const botonesOrdenar = document.querySelectorAll(".dropdown-item")
 
 
+// Funcion para cargar los productos
 function cargarProductos(productoSeleccionado) {
     contenedorProductos.innerHTML = ""
     productoSeleccionado.forEach(producto => {
@@ -387,10 +418,10 @@ function cargarProductos(productoSeleccionado) {
         div.innerHTML = `
         <div class="card h-100">
           <img src="${producto.imagen}" class="card-img-top" alt="${producto.titulo}">
-          <div class="card-body">
+          <div class="card-body text-center">
             <h5 class="card-title">${producto.titulo}</h5>
             <p class="card-text">$${producto.precio}</p>
-            <span>3 cuotas sin interes de ${Math.round(producto.precio / 3)}</span>
+            <span>3 cuotas sin interes de $${Math.round(producto.precio / 3)}</span>
            <div class="botones">
             <a  class="btn btn-sm btn-outline-success">Comprar</a>
             <a class="btn btn-sm btn-outline-dark"><i class="fa-solid fa-cart-shopping"></i></a>
@@ -404,19 +435,73 @@ function cargarProductos(productoSeleccionado) {
     );
 
 }
-
 cargarProductos(productos)
 
+// Variable para mantener el filtro activo
+let filtroActivo = null; 
+
+// Se hace el filtro segun que boton se seleccione
 botonesFiltros.forEach(boton => {
     boton.addEventListener("click", (e) => {
-        botonesFiltros.forEach(boton => boton.classList.remove("active"));
-        e.currentTarget.classList.add("active");
-        if (e.currentTarget.id != "todos"){
-            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id)
+        botonesFiltros.forEach(boton => boton.classList.remove("active"))
+        e.currentTarget.classList.add("active")
+        filtroActivo = e.currentTarget.id
+        if (filtroActivo !== "todos") {
+            const productosBoton = productos.filter(producto => producto.categoria.id === filtroActivo)
             cargarProductos(productosBoton)
-        }
-        else{
+            arrayDeFiltros.splice(0, 1, filtroActivo)
+            cargarImgFiltros()
+        } else {
+            arrayDeFiltros.shift()
+            cargarImgFiltros()
+            filtroActivo = null
             cargarProductos(productos)
         }
     })
-}); */
+})
+
+// Función de comparación para ordenar por precio
+function compararPorPrecio() {
+    if (filtroActivo != null) {
+        const productosFiltrados = productos.filter(producto => producto.categoria.id === filtroActivo)
+        return productosFiltrados.sort((productoA, productoB) => productoA.precio - productoB.precio)
+    } else {
+        return productos.sort((productoA, productoB) => productoA.precio - productoB.precio)
+    }
+}
+
+// Aca ponemos en funcionamiennto el boton de ordenar
+botonesOrdenar.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+        if (e.currentTarget.id == "menor") {
+            cargarProductos(compararPorPrecio(productos))
+            arrayDeFiltros.splice(1, 1, e.currentTarget.id)
+            if (arrayDeFiltros.includes("mayor")) {
+                let index = arrayDeFiltros.indexOf("mayor")
+                arrayDeFiltros.splice(index, 1)
+            }
+            cargarImgFiltros()
+        } 
+        else {
+            arrayDeFiltros.splice(1, 1, e.currentTarget.id)
+            if (arrayDeFiltros.includes("menor")) {
+                let index = arrayDeFiltros.indexOf("menor")
+                arrayDeFiltros.splice(index, 1)
+            }         
+            cargarImgFiltros()
+            cargarProductos(compararPorPrecio(productos).reverse())
+        }
+    })
+})
+// Funcion para cargar los filtros en su contenedor
+function cargarImgFiltros() {
+    contenedorFiltrosAplicados.innerHTML =""
+    arrayDeFiltros.forEach(filtro =>{
+            let index = imgFiltros.findIndex(i => i.nombre === filtro)
+            let img = document.createElement("img")
+            img.classList.add("filtro-aplicado")
+            img.classList.add(filtro)
+            img.src = imgFiltros[index].link
+            contenedorFiltrosAplicados.append(img)
+        })
+    }

@@ -56,12 +56,34 @@
     <div class="contenedor-principal">
       <!--FILTROS-->
       <div id="contenedor-filtros" class="filtros">
-        <button id="todos" class="btn btn-outline-danger boton-filtro">Todos los productos</button>
-        <button id="zapato" class="btn btn-outline-danger boton-filtro">Tacones</button>
-        <button id="zapatilla" class="btn btn-outline-danger boton-filtro">Zapatillas</button>
-        <button id="bota" class="btn btn-outline-danger boton-filtro">Botas</button>
+        <div class="dropdown">
+          <div class="filtros-aplicados">
+
+          </div>
+          <button class="btn btn-outline-danger dropdown-toggle mt-3" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Ordenar
+          </button>
+          <ul class="dropdown-menu">
+            <li><a id="mayor" class="dropdown-item" href="#">De mayor a menor</a></li>
+            <li><a id="menor" class="dropdown-item" href="#">De menor a mayor</a></li>
+          </ul>
+        </div>
+        <button class="btn btn-outline-danger collapsed dropdown-toggle" type="button" data-bs-toggle="collapse"
+          data-bs-target="#categorias" aria-expanded="false" aria-controls="categorias">
+          categorias
+        </button>
+        <div class="collapse" id="categorias">
+          <div class="card card-body">
+            <button id="todos" class="btn btn-outline-danger boton-filtro">Todos los productos</button>
+            <button id="zapato" class="btn btn-outline-danger boton-filtro">Zapatos</button>
+            <button id="zapatilla" class="btn btn-outline-danger boton-filtro">Zapatillas</button>
+            <button id="bota" class="btn btn-outline-danger boton-filtro">Botas</button>
+          </div>
+        </div>
+
       </div>
-<!---->
+      <!---->
       <div id="contenedor-productos" class="productos row row-cols-2 row-cols-md-4 g-1">
         <!--  
         <div class="col">
@@ -78,7 +100,7 @@
               </div>
             </div>
           </div>-->
-        
+
       </div>
     </div>
   </main>
