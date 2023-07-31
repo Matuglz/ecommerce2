@@ -21,7 +21,6 @@ footer {
 .contenedor-principal {
     display: flex;
 }
-
 .filtros {
     width: 13vw;
     height: 100vh;
@@ -50,3 +49,53 @@ footer {
 .collapse-categorias{
     margin-top: -5rem;
 }
+
+/*MODAL COMPRAS*/
+
+.modal-comprar-body{
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.288);
+}
+
+.position-modals{
+    margin: auto;
+}
+
+.btn-close{
+    background-color: rgb(235, 225, 225);
+}
+
+.modal-comprar{
+    margin: auto;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 6px;
+}
+
+.modal-comprar img{
+    width: 70%;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+
+}
+
+.modal-text{
+    text-align: end;
+    margin: 3rem 2rem 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.btn-talle{
+    width: auto;
+}
+
+/*MODAL PAGAR*/

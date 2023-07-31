@@ -15,6 +15,43 @@
 </head>
 
 <body>
+  <section class="modal-comprar-body d-none">
+    <!--
+    <div class="position-modals">
+      <div><button type="button" class="btn-close"></button></div>
+      <div class="modal-comprar">
+        <img src="../productos/botas/botas-0.webp" alt="">
+        <div class="modal-text">
+          <h2>bota duki</h2>
+          <p>Talles:
+          <ul class="lista-talles">
+            SE RELLENA CON JS
+          </ul>
+          </p>
+          <div class="d-flex justify-content-around align-items-baseline">
+            <p>cantidad: 1</p>
+            <div class="">
+              <a class="btn btn-secondary dropdown-toggle w-auto" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Cantidad
+              </a>
+
+              <ul class="dropdown-menu overflow-y-scroll">
+                SE RELLENA CON JS
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex justify-content-around align-items-baseline">
+            <p>
+              Precio: $${precio}
+            </p>
+            <button class="btn btn-outline-success btn-sm btn-terminar-compra">¡Comprar!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  -->
+  </section>
   <header>
     <!--Nav-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -52,21 +89,28 @@
     <p class="text-center text-light bg-black">Envio gratis a partir de $50.000</p>
   </header>
   <main>
+    <div class="container">
+      <div class="mb-3">
+        <input type="email" class="form-control" id="buscador" placeholder="Busca tu producto favorito">
+      </div>
+    </div>
     <!--CONTENEDOR PRINCIPAL-->
     <div class="contenedor-principal">
+
+
       <!--FILTROS-->
       <div id="contenedor-filtros" class="filtros">
         <div class="dropdown">
           <div class="filtros-aplicados">
-
+            <!--Aca se rellena con los img de los filtros aplicados-->
           </div>
           <button class="btn btn-outline-danger dropdown-toggle mt-3" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             Ordenar
           </button>
           <ul class="dropdown-menu">
-            <li><a id="mayor" class="dropdown-item" href="#">De mayor a menor</a></li>
-            <li><a id="menor" class="dropdown-item" href="#">De menor a mayor</a></li>
+            <li><a id="mayor" class="dropdown-item dropdown-item-ordenar" href="#">De mayor a menor</a></li>
+            <li><a id="menor" class="dropdown-item dropdown-item-ordenar" href="#">De menor a mayor</a></li>
           </ul>
         </div>
         <button class="btn btn-outline-danger collapsed dropdown-toggle" type="button" data-bs-toggle="collapse"
